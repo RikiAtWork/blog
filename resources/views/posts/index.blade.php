@@ -20,7 +20,7 @@
         @empty
             <li>No se encontraron titulos</li>
         @endforelse
-        {{ $posts->links() }}
+        <li>{{ $posts->links() }}</li>
 
         </ul>
     </div>
