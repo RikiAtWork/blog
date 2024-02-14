@@ -7,7 +7,9 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-link" href="{{route('inicio')}}">Inicio</a>
-            <a class="nav-link" href="{{route('posts_listado')}}">Listado de posts</a
+            <a class="nav-link" href="{{route('posts.index')}}">Listado de posts</a>
+            <a class="nav-link" href="{{route('posts.create')}}">Crear posts</a>
+            <a class="nav-link" href="{{route('posts.edit',  ['post' => 1])}}">Editar posts</a>
         </div>
         </div>
     </div>

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use App\Models\Post;
+
 
 class PostController extends Controller
 {
@@ -11,7 +14,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::orderBy('titulo')->get();
+        $posts = Post::paginate(5);
+
+
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -19,15 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        return Redirect::route('inicio');
     }
 
     /**
@@ -35,13 +34,23 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('posts.show', compact('post'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(String $id)
+    {
+        return Redirect::route('inicio');
+    }
+
+     /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
     {
         //
     }
@@ -59,6 +68,8 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+        return redirect()->route('posts.index');
     }
 }
